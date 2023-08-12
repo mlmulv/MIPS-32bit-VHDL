@@ -1,5 +1,3 @@
-In this project, we will use VHDL to design our own 32 bit MIPS processor by scratch. Once we compiled all the MIPS files into a Top Level VHDL file, we can compile the Top Level VHDL file in Quartus with a program in a included .mif file. Then we can program a Terasic DE10-Lite board to perform the operations of the .mif file.
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
