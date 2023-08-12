@@ -11,9 +11,10 @@ entity andtwo is
 end andtwo;
 
 architecture bhv of andtwo is 
-
-
 begin
 
-	
+	process(input1,input2)
+	begin
+		output <= input1 and input2;
+	end process;
 end bhv;

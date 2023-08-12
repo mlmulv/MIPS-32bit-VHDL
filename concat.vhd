@@ -11,9 +11,9 @@ entity concat is
 end concat;
 
 architecture bhv of concat is 
-
-
 begin
-
-	
+	process(input,pc)
+	begin
+		output <= pc & input;
+	end process;
 end bhv;

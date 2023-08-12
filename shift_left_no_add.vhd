@@ -9,10 +9,14 @@ entity shift_left_no_add is
 	);
 end shift_left_no_add;
 
-architecture bhv of shift_left_no_add is 
-
-
+architecture bhv of shift_left_no_add is
+signal zeros : std_logic_vector(1 downto 0) := "00";
+ 
 begin
-
-	
+	process(input,zeros)
+	variable temp : std_logic_vector(33 downto 0);
+	begin
+		temp := input & zeros;
+		output <= temp(31 downto 0);
+	end process;
 end bhv;

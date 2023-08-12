@@ -11,9 +11,10 @@ entity ortwo is
 end ortwo;
 
 architecture bhv of ortwo is 
-
-
 begin
 
-	
+	process(input1,input2)
+	begin
+		output <= input1 or input2;
+	end process;
 end bhv;

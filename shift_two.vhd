@@ -6,15 +6,16 @@ entity shift_two is
 	generic (
 	IN_WIDTH : positive := 26);
 	port (
-		input : std_logic_vector(IN_WIDTH-1 downto 0);
-		output : std_logic_vector(IN_WIDTH+1 downto 0)
+		input : in std_logic_vector(IN_WIDTH-1 downto 0);
+		output : out std_logic_vector(IN_WIDTH+1 downto 0)
 	);
 end shift_two;
 
 architecture bhv of shift_two is 
-
-
+	signal zeros : std_logic_vector(1 downto 0) := "00";
 begin
-
-	
+	process(input,zeros)
+	begin
+		output <= input & zeros;
+	end process;
 end bhv;

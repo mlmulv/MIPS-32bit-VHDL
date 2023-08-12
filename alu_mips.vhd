@@ -21,7 +21,7 @@ architecture bhv of alu_mips is
 	signal one : std_logic_vector(WIDTH -1 downto 0);
 begin	
 
-	process(op,shift,alu_input1,alu_input2)
+	process(op,shift,alu_input1,alu_input2,zeros,one)
 	variable temp_mult_sg : signed(WIDTH*2 - 1 downto 0);
 	variable temp_mult_un : unsigned(WIDTH*2 - 1 downto 0);
 	begin
@@ -33,10 +33,17 @@ begin
 	one <= zeros & '1';
 	
 	-- I type
+		-- Branch Less than or equal to 0
 		if (op = "000001") then
-			if (unsigned(alu_input1) < 0) then
+			if (unsigned(alu_input1) <= 0) then
 				branch_taken <= '1'; -- for greater than or equal to you have to not the output
 			end if;
+		
+		-- Branch greater than 0
+		--elsif (op = "011000") then 
+			--if (unsigned(alu_input1) > 0) then
+				--branch_taken <= '1'; -- for greater than or equal to you have to not the output
+			--end if;
 		
 		elsif (op = "000100") then
 			if (unsigned(alu_input1) = unsigned(alu_input2)) then
@@ -58,9 +65,7 @@ begin
 				branch_taken <= '1';
 			end if;
 			
-		-- NOT COMPLETE WITH REST OF I TYPE
-			
-		-- R type
+	
 		-- add unsigned
 		elsif (op = "010000") then
 			result <= std_logic_vector(unsigned(alu_input1) + unsigned(alu_input2));
@@ -87,11 +92,19 @@ begin
 		
 		-- shift right logical
 		elsif (op = "010101") then
-			result <= std_logic_vector(shift_right(unsigned(alu_input1), to_integer(unsigned(shift))));
+			result <= std_logic_vector(shift_right(unsigned(alu_input2), to_integer(unsigned(shift))));
 		
 		-- shift right arthimetic
 		elsif (op = "010110") then
-			result <= std_logic_vector(rotate_right(unsigned(alu_input1), to_integer(unsigned(shift))));
+			result <= std_logic_vector(rotate_right(unsigned(alu_input2), to_integer(unsigned(shift))));
+			
+		-- shift left logical
+		elsif (op = "011001") then
+			result <= std_logic_vector(shift_left(unsigned(alu_input2), to_integer(unsigned(shift))));
+		
+		-- shift left arthimetic
+		elsif (op = "011010") then
+			result <= std_logic_vector(rotate_left(unsigned(alu_input2), to_integer(unsigned(shift))));
 			
 		
 		-- set on less than
@@ -101,9 +114,23 @@ begin
 			else 
 				result <= (others => '0');
 			end if;
+			
+		-- xor		
+		elsif (op = "011000") then
+			result <= alu_input1 xor alu_input2;
+		
+		-- jump r pass through
+		elsif (op = "011011") then
+			result <= alu_input1;
+			
+		-- or
+		elsif (op = "011100") then
+			result <= alu_input1 or alu_input2;
 		end if;
 		
-		-- NOT COMPLETE WITH REST OF R TYPE
+		
+		
+		
 	end process;
 end bhv;
 		

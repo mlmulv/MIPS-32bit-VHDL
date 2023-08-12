@@ -21,7 +21,7 @@ end memory_mips;
 architecture bhv of memory_mips is
 signal inPort0_out, inPort1_out, out_RAM, input_data : std_logic_vector (WIDTH-1 downto 0);
 signal ram_write_en, outPort_en : std_logic;
-signal out_sel : std_logic_vector(1 downto 0);
+signal out_sel, sel : std_logic_vector(1 downto 0);
 begin
 	
 	INPORT0_REG: entity work.reg_async_rst port map (
@@ -54,6 +54,16 @@ begin
 		outPort_en => outPort_en,
 		out_sel => out_sel);
 		
+		
+	REG_SEL : entity work.reg_async_rst generic map (
+		WIDTH => 2)
+		port map (
+		input => out_sel,
+		output => sel,
+		clk => clk,
+		rst => rst,
+		en => '1');
+		
 	OUTPORT_reg: entity work.reg_async_rst port map (
 		input => input,
 		output => outPort,
@@ -67,6 +77,6 @@ begin
 			input3 => out_RAM,
 			input2 => inPort0_out,
 			input1 => inPort1_out,
-			sel => out_sel,
+			sel => sel,
 			output => output);
 end bhv;
