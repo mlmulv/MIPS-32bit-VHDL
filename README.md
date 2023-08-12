@@ -59,6 +59,6 @@ To begin this project you will need to complete the following steps
 <!-- Authors -->
 ## Authors
 
-Markus Mulvihill - [LinkedIn](https://www.linkedin.com/in/markus-mulvihill-6549961a0/) - markusmulvihill1103@gmail.com
+Markus Mulvihill - [LinkedIn](https://www.linkedin.com/in/markus-mulvihill-6549961a0/) 
 
 Project Link: (https://github.com/mlmulv/MIPS-32bit-VHDL)
