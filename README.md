@@ -51,8 +51,8 @@ To begin this project you will need to complete the following steps
 
 1. We can now run a variety of different programs onto the board.
 2. Within the files I provided, there is a **GCD.mif** and **bubble_sort.mif** file.
-   *A. The **GCD.mif** file will output the greatest common denominator from two inputs. On the board you will use the 9 switches to input the two numbers you will use.
-   *B. THE **bubble_sort.mif** file will not take inputs, but will output the bubble sort algorithm working on sorting an arrangment of different numbers.
+   * A. The **GCD.mif** file will output the greatest common denominator from two inputs. On the board you will use the 9 switches to input the two numbers you will use.
+   * B. THE **bubble_sort.mif** file will not take inputs, but will output the bubble sort algorithm working on sorting an arrangment of different numbers.
 3. You can use whichever mif file you provide.
 
 
